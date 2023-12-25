@@ -10,6 +10,7 @@ g = randint(0, 255)
 b = randint(0, 255)
 
 def rgb():
+    """Function to do the Brightness to 100% and random color using randint"""
     bulb.set_brightness(100)
     bulb.set_rgb(r, g, b)
 
