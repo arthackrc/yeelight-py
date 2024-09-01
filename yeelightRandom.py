@@ -1,6 +1,6 @@
 #Yeelight
 from yeelight import Bulb
-bulb = Bulb("192.168.1.9")
+bulb = Bulb("192.168.68.9")
 
 properties = bulb.get_properties()
 power = properties["power"] != "on"
@@ -18,10 +18,11 @@ b = randint(0, 255)
 
 import webcolors
 #https://stackoverflow.com/a/9694246
+#Update https://stackoverflow.com/a/78869532
 def closest_colour(requested_colour):
     min_colours = {}
-    for key, name in webcolors.CSS3_HEX_TO_NAMES.items():
-        r_c, g_c, b_c = webcolors.hex_to_rgb(key)
+    for name in webcolors.names("css3"):
+        r_c, g_c, b_c = webcolors.name_to_rgb(name)
         rd = (r_c - requested_colour[0]) ** 2
         gd = (g_c - requested_colour[1]) ** 2
         bd = (b_c - requested_colour[2]) ** 2
@@ -43,12 +44,12 @@ actual_name, closest_name = get_colour_name(requested_colour)
 import apprise
 apobj = apprise.Apprise()
 apobj.add('windows://')
-#apobj.add('gotify://localhost/Avyew1Wh-zdeONP/?priority=high')
+#apobj.add('gotify://192.168.68.30:1004/Ae-eNhbp4zp6bmG/?priority=high')
 
 def NotifyColor():
     apobj.notify(
-    body="Your lamp color changed to "+closest_name,
-    title='Lamp Color',
+        body="Your lamp color changed to "+closest_name,
+        title='Lamp Color',
 )
 
 if power:

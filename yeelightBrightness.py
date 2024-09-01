@@ -1,15 +1,15 @@
-#Yeelight
-from yeelight import *
-bulb = Bulb("192.168.1.9", auto_on=True)
+from yeelight import Bulb
+import apprise
 
+#Yeelight
+bulb = Bulb("192.168.68.9", auto_on=True)
 properties = bulb.get_properties()
 bright = int(properties["bright"])
 
 #Notification
-import apprise
 apobj = apprise.Apprise()
 apobj.add('windows://')
-#apobj.add('gotify://localhost/Avyew1Wh-zdeONP/?priority=high')
+#apobj.add('gotify://192.168.68.30:1004/Ae-eNhbp4zp6bmG/?priority=high')
 
 def Notify0():
     apobj.notify(
